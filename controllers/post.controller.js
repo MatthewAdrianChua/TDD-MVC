@@ -7,6 +7,7 @@ PostController.create = (req, res) => {
             return res.status(500).end();
         } else {
             return res.json(post);
+            //return res.status(500).end()
         }
     })
 
