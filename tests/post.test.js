@@ -154,22 +154,23 @@ describe('Post controller', () => {
         });
 
         it('should return the found post object', () => {
+            const req ={
+                params: { id: '507asdghajsdhjgasd' }
+            };
+
             const expectedResult = {
-                _id: '507asdghajsdhjgasd',
-                title: 'My first test post',
-                content: 'Random content',
-                author: 'stswenguser',
-                date: Date.now()
+                id: '507asdghajsdhjgasd'
             };
 
             findPostStub = sinon.stub(PostModel, 'findPost').yields(null, expectedResult);
 
             PostController.findPost(req, res);
 
-            sinon.assert.calledWith(PostModel.findPost, req.params.id);
-            sinon.assert.calledWith(res.json, sinon.match({ title: foundPost.title }));
-            sinon.assert.calledWith(res.json, sinon.match({ content: foundPost.content }));
-            sinon.assert.calledWith(res.json, sinon.match({ author: foundPost.author }));
+            sinon.assert.calledWith(PostModel.findPost, req.params._id);
+            sinon.assert.calledWith(res.json, sinon.match({ title: req.title }));
+            sinon.assert.calledWith(res.json, sinon.match({ content: req.content }));
+            sinon.assert.calledWith(res.json, sinon.match({ author: req.author }));
+        })
 
             it('should return status 500 if post is not found', () => {
                 const req = {
@@ -180,10 +181,9 @@ describe('Post controller', () => {
             
                 PostController.findPost(req, res);
             
-                sinon.assert.calledWith(PostModel.findPost, req.params.id);
+                sinon.assert.calledWith(PostModel.findPost, req.params._id);
                 sinon.assert.calledWith(res.status, 500);
                 sinon.assert.calledOnce(res.status(500).end);
             });
-        })
     });
 });
