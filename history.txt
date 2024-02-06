@@ -1,0 +1,26 @@
+git init
+git link-to-connect-to-repository
+git add .
+git commit -m 'initialization'
+git push -u origin master
+npm run test
+npm run test
+npm run test
+npm run test
+npm run test
+npm run test
+git add .
+git commit -m 'add failing test for MVC project'
+git push -u origin master
+git pull origin master
+npm run test
+npm run test
+npm run test
+npm run test
+npm run test
+git add .
+git commit -m 'Add passing code for MVC test case'
+git push -u origin master
+git add history.txt
+git commit -m "Add terminal command history
+git push -u origin master
